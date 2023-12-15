@@ -38,6 +38,19 @@ public class StateCensusAnalyser {
 
         return records;
     }
+
+    public static int countOfRecords(String filePath) {
+        int count = 0;
+        try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
+            reader.readNext(); // Skip header
+            while (reader.readNext() != null) {
+                count++;
+            }
+        } catch (IOException | CsvValidationException exception) {
+            throw new RuntimeException(exception);
+        }
+        return count;
+    }
     public static String recordsToString(List<String[]> records) {
         StringBuilder result = new StringBuilder();
         for (String[] record : records) {
@@ -56,6 +69,14 @@ public class StateCensusAnalyser {
         List<String[]> allRecords = readFromFile(csvFilePath);
 
         System.out.println(recordsToString(allRecords));
+
+
+        int countRecordsOfCSVfile = countOfRecords(csvFilePath);
+        if (countRecordsOfCSVfile == 37) {
+            System.out.println("Number of records are matching");
+        } else {
+            System.out.println("Number of records are not matching");
+        }
 
 
     }
