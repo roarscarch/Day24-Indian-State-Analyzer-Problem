@@ -61,6 +61,17 @@ public class StateCensusAnalyser {
         }
         return result.toString();
     }
+    public static String stateCodes(List<String[]> records) {
+        StringBuilder result = new StringBuilder();
+        for (String[] record : records) {
+            int length=record.length;
+            result.append(record[length-1]);
+            result.append("\n");
+        }
+        return result.toString();
+    }
+
+
 
     public static void main(String[] args) {
         String csvFilePath = "StateCensus.csv";
@@ -68,7 +79,8 @@ public class StateCensusAnalyser {
         System.out.println("Welcome to Indian States Census Analyser Problem");
         List<String[]> allRecords = readFromFile(csvFilePath);
 
-        System.out.println(recordsToString(allRecords));
+        //System.out.println(recordsToString(allRecords));
+        System.out.println(stateCodes(allRecords));
 
 
         int countRecordsOfCSVfile = countOfRecords(csvFilePath);
