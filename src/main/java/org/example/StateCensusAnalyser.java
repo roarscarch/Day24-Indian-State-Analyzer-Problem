@@ -9,22 +9,6 @@ import java.util.List;
 
 public class StateCensusAnalyser {
 
-    public static int countOfRecords(String filePath){
-        int count=0;
-        try(CSVReader reader = new CSVReader(new FileReader(filePath))){
-            reader.readNext();
-            while(( reader.readNext())!=null){
-                count++;
-            }
-        }catch (IOException exception){
-            exception.printStackTrace();
-        } catch (CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
-        //System.out.println(count);
-        return count;
-    }
-
 //    public static void writeToFile(String csvFilePath,String[][] data){
 //        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFilePath))){
 //            writer.writeNext(data[0]);
@@ -73,11 +57,6 @@ public class StateCensusAnalyser {
 
         System.out.println(recordsToString(allRecords));
 
-        int countRecordsOfCSVfile = countOfRecords(csvFilePath);
-        if (countRecordsOfCSVfile == 37) {
-            System.out.println("Number of records are matching");
-        } else {
-            System.out.println("Number of records are not matching");
-        }
+
     }
 }
